@@ -6,27 +6,30 @@ import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
-class App extends Component {
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    // We declare the state as shown below
+    this.state = {                           
+      x: "This is x from state",    
+      y: "This is y from state"
+    }
+  }
+
   render() {
+    let x1 = this.state.x;
+    let y1 = this.state.y;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1>{x1}</h1>
+        <h2>{y1}</h2>
       </div>
     );
   }
 }
+
 
 export default withAuthenticator(App, true);
