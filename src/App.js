@@ -7,29 +7,23 @@ import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    // We declare the state as shown below
-    this.state = {                           
-      x: "This is x from state",    
-      y: "This is y from state"
-    }
-  }
+export default class App extends React.Component {
+  state = {
+    total: null,
+    next: null,
+    operation: null,
+  };
+
+  handleClick = buttonName => {
+    this.setState(calculate(this.state, buttonName));
+  };
 
   render() {
-    let x1 = this.state.x;
-    let y1 = this.state.y;
-
     return (
-      <div>
-        <h1>{x1}</h1>
-        <h2>{y1}</h2>
+      <div className="component-app">
+        <Display value={this.state.next || this.state.total || "0"} />
+        <ButtonPanel clickHandler={this.handleClick} />
       </div>
     );
   }
 }
-
-
-export default withAuthenticator(App, true);
